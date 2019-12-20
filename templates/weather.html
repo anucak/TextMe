@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}| Check the weather{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center pt-4">
+            <h1 class="text-success">Check the current weather</h1>
+        </div>
+        <div class="col-md-4 offset-md-4 pt-4">
+            <form method="post" action="/weather">
+                <div class="form-group row">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control form-control-sm" name="city-name" id="inputCity" placeholder="Search by city name">
+                        <small class="form-text text-muted">Check your spelling!</small>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <button type="submit" class="btn btn-success btn-sm">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 offset-md-4 pt-2">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">{{ data.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">{{date}}</h6>
+                    <img src="http://openweathermap.org/img/w/{{data.weather[0].icon}}.png" alt="weather icon">
+                    <h5 class="card-text">{{ data.main.temp }} °C</h5>
+                    <p class="card-text">{{ data.weather[0].description }}</p>
+                    <p class="card-text">Min {{ data.main.temp_min }} °C</p>
+                    <p class="card-text">Max {{ data.main.temp_max }} °C</p>
+                    <small class="card-text">Last updated {{time}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}| Users{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 text-center pt-4">
+            <h1 class="text-success">Users</h1>
+            <p class="text-muted">Click on username for more details about the user</p>
+        </div>
+        <div class="col-md-4 offset-md-4 pt-4">
+            {% for user in users %}
+                <h5 class="display-8 text-center"><a href="/users/{{user.id}}" class="text-success">{{user.username}}</a></h5>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

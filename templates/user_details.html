@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}| {{user_details.username}}{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 text-center text-success pt-4">
+            <h1>Details</h1>
+        </div>
+        <div class="col-md-4 offset-md-4 pt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-success">{{user_details.username}}</h4>
+                    <p class="card-text"><strong>Email: </strong>{{user_details.email}}</p>
+                    <hr>
+                    <p class="card-text"><strong>Bio: </strong>{{user_details.info}}</p>
+                    <br>
+                    <form action="/users/{{user.id}}" method="post" class="text-center">
+                        <button class="btn btn-success" name="user-reply" value="{{user_details.username}}">Send message</button>
+                        <br>
+                        <small><a href="/users" class="text-success">Return to users</a> or <a href="/received" class="text-success">Return to inbox</a></small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

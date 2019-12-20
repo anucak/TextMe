@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}| Register{% endblock title %}
+
+{% block content %}
+    <div class="row pt-4">
+        <div class="col-md-12 text-center">
+            <h1 class="text-success">Register to TextMe</h1>
+        </div>
+        <div class="col-md-6 offset-md-3 py-4">
+            <form class="pb-2" method="post" action="/register">
+                <div class="form-group row">
+                    <label for="inputUsername" class="col-md-4 col-form-label">Username <small class="text-danger">*</small></label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="user-name" placeholder="Enter your username" id="inputUsername" required>
+                        {% if alert2 %}
+                            <small class="form-text text-danger">{{alert2}}</small>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail" class="col-md-4 col-form-label">Email address <small class="text-danger">*</small></label>
+                    <div class="col-md-8">
+                        <input type="email" class="form-control" name="user-email" placeholder="Enter your email" id="inputEmail" aria-describedby="emailHelp" required>
+                        {% if alert3 %}
+                            <small class="form-text text-danger">{{alert3}}</small>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-md-4 col-form-label">Password <small class="text-danger">*</small></label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control" name="user-password" placeholder="Enter your password" id="inputPassword" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPasswordRepeat" class="col-md-4 col-form-label">Repeat password <small class="text-danger">*</small></label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control" name="user-repeat-password" placeholder="Repeat your password" id="inputPasswordRepeat" required>
+                        {% if alert1 %}
+                            <small class="form-text text-danger">{{alert1}}</small>
+                        {% endif %}
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="inputAbout">Write something about yourself <small class="text-muted">(optional)</small></label>
+                    <textarea class="form-control" name="user-about" id="inputAbout" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+            </form>
+            <a href="/login" class="text-success">Click here if you already have an account</a>
+            <small class="form-text text-muted">By signing up to TextMe, you agree to share your information with other registered users.
+                We'll never share any of your information with third-party sites or applications.
+            </small>
+        </div>
+    </div>
+{% endblock content %}

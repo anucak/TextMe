@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}| Log in{% endblock title %}
+
+{% block content %}
+    <div class="row pt-4">
+        <div class="col-md-12 text-center">
+            <h1 class="text-success">Log in to TextMe</h1>
+        </div>
+        <div class="col-md-4 offset-md-4 pt-4">
+            <form class="pb-2" method="post" action="/login">
+                <div class="form-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" class="form-control" name="login-email" placeholder="Enter your email address" id="inputEmail" aria-describedby="emailHelp" required>
+                    {% if alert1 %}
+                    <small class="form-text text-danger">{{alert1}}</small>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" name="login-password" placeholder="Enter your password" id="inputPassword" required>
+                    {% if alert2 %}
+                        <small class="form-text text-danger">{{alert2}}</small>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Log in</button>
+            </form>
+            <a href="/register" style="color: green">Click here if you don't have an account</a>
+        </div>
+    </div>
+{% endblock content %}

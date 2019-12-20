@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}| Inbox{% endblock title %}
+
+{% block content %}
+    <div class="row pt-2">
+        <div class="col-md-12">
+            <nav class="nav nav-tabs justify-content" role="navigation">
+                <a class="nav-link text-success" href="/new">New</a>
+                <a class="nav-link active bg-success text-light" href="/received">Inbox</a>
+                <a class="nav-link text-success" href="/sent">Sent</a>
+            </nav>
+        </div>
+        <div class="col-md-12 pt-4">
+            {% if messages %}
+                {% for message in messages %}
+                <p>FROM: <a href="/users/{{message.sender_id}}" style="color: green">{{message.sender_username}}</a></p>
+                <p class="text-muted">{{message.time}} | {{message.date}}</p>
+                <p>{{message.message}}</p>
+                <form action="/received" method="post">
+                    <button class="btn btn-outline-success" name="user-reply" value="{{message.sender_username}}">Reply</button>
+                </form>
+                <hr>
+                {% endfor %}
+            {% else %}
+                <h5 class="text-center text-secondary">There is no received messages yet</h5>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

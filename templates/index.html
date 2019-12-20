@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}| Home{% endblock title %}
+
+{% block content %}
+    {% if user %}
+        <div class="row pt-4 mt-2">
+            <div class="col-md text-center pt-4 mt-4">
+                <h1 class="display-4 text-success">Hello {{user.username}}!</h1>
+                <p class="lead">Send a new message or check your inbox, and have fun using our simple messaging app</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <a class="btn btn-success btn-lg" href="/new" role="button">New message</a>
+                    <a class="btn btn-success btn-lg" href="/received" role="button">Inbox</a>
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <div class="row pt-4 mt-2">
+            <div class="col-md text-center pt-4 mt-4">
+                <h1 class="display-4 text-success">Welcome to TextMe</h1>
+                <p class="lead">Log in or create a new account to use our simple messaging app to connect with others</p>
+                <hr class="my-4">
+                <p class="lead">
+                    <a class="btn btn-success btn-lg" href="/login" role="button">Log in</a>
+                    <a class="btn btn-outline-success btn-lg" href="/register" role="button">Create account</a>
+                </p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

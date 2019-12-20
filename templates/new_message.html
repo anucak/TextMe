@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}| New message{% endblock title %}
+
+{% block content %}
+    <div class="row pt-2">
+        <div class="col-md-12">
+            <nav class="nav nav-tabs justify-content" role="navigation">
+                <a class="nav-link active bg-success text-light" href="/new">New</a>
+                <a class="nav-link text-success" href="/received">Inbox</a>
+                <a class="nav-link text-success" href="/sent">Sent</a>
+            </nav>
+        </div>
+
+        <div class="col-md-8 offset-md-2 pt-2">
+            <form method="post" action="/new">
+                <div class="form-group">
+                    <label for="receiverUsername" class="col-form-label">Recipient username:</label>
+                    <input type="text" class="form-control" name="receiver-username" id="receiverUsername" placeholder="Enter recipient username" value="{{user_reply}}" required>
+                    {% if alert %}
+                        <p class="form-text text-danger">{{alert}}</p>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="receiverMessage" class="col-form-label">Message:</label>
+                    <textarea class="form-control" name="text" id="receiverMessage" placeholder="Enter your message here" rows="8" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Send</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

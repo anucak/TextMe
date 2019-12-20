@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}| Profile{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-10 offset-sm-2 pt-4">
+            <h1 class="text-success">Profile page</h1>
+        </div>
+        <div class="col-sm-5 offset-sm-2 pt-4">
+            <h4 class="text-success">{{user.username}}</h4>
+            <p><strong>Email: </strong>{{user.email}}</p>
+            <br>
+            <p><strong>Bio:</strong></p>
+            <p>{{user.info}}</p>
+        </div>
+        <div class="col-sm-4 pt-4">
+            <p><strong>Messages sent: </strong>{{messages_sent}}</p>
+            <p><strong>Messages received: </strong>{{messages_received}}</p>
+            <br>
+            <p>
+                <a class="btn btn-success" href="/profile/edit" role="button">Edit profile</a>
+                <button class="btn btn-outline-success" role="button" data-toggle="modal" data-target="#delete">Delete profile</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- modal: delete -->
+    <div class="modal" tabindex="-1" role="dialog" id="delete">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-light">
+                    <h5 class="modal-title">Delete profile</h5>
+                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete your profile?</p>
+                </div>
+                <div class="modal-footer">
+                    <form method="post" action="/profile">
+                        <button type="submit" class="btn btn-success">Yes, delete profile</button>
+                    </form>
+                    <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
