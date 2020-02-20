@@ -15,7 +15,7 @@
             {% if messages %}
                 {% for message in messages %}
                     <p>TO: <a href="/users/{{message.receiver_id}}" style="color: green">{{message.receiver_username}}</a></p>
-                    <p class="text-muted">{{message.time}} | {{message.date}}</p>
+                    <p class="text-muted">{{message.datetime.strftime("%d/%m/%y")}} | {{message.datetime.strftime("%H:%M")}}</p>
                     <p>{{message.message}}</p>
                     <hr>
                 {% endfor %}

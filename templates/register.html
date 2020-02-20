@@ -13,8 +13,8 @@
                     <label for="inputUsername" class="col-md-4 col-form-label">Username <small class="text-danger">*</small></label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" name="user-name" placeholder="Enter your username" id="inputUsername" required>
-                        {% if alert2 %}
-                            <small class="form-text text-danger">{{alert2}}</small>
+                        {% if alert_username %}
+                            <small class="form-text text-danger">{{alert_username}}</small>
                         {% endif %}
                     </div>
                 </div>
@@ -22,8 +22,8 @@
                     <label for="inputEmail" class="col-md-4 col-form-label">Email address <small class="text-danger">*</small></label>
                     <div class="col-md-8">
                         <input type="email" class="form-control" name="user-email" placeholder="Enter your email" id="inputEmail" aria-describedby="emailHelp" required>
-                        {% if alert3 %}
-                            <small class="form-text text-danger">{{alert3}}</small>
+                        {% if alert_email %}
+                            <small class="form-text text-danger">{{alert_email}}</small>
                         {% endif %}
                     </div>
                 </div>
@@ -37,8 +37,8 @@
                     <label for="inputPasswordRepeat" class="col-md-4 col-form-label">Repeat password <small class="text-danger">*</small></label>
                     <div class="col-md-8">
                         <input type="password" class="form-control" name="user-repeat-password" placeholder="Repeat your password" id="inputPasswordRepeat" required>
-                        {% if alert1 %}
-                            <small class="form-text text-danger">{{alert1}}</small>
+                        {% if alert_password %}
+                            <small class="form-text text-danger">{{alert_password}}</small>
                         {% endif %}
                     </div>
                 </div>

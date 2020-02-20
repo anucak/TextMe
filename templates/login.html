@@ -12,15 +12,15 @@
                 <div class="form-group">
                     <label for="inputEmail">Email address</label>
                     <input type="email" class="form-control" name="login-email" placeholder="Enter your email address" id="inputEmail" aria-describedby="emailHelp" required>
-                    {% if alert1 %}
-                    <small class="form-text text-danger">{{alert1}}</small>
+                    {% if alert_no_user %}
+                    <small class="form-text text-danger">{{alert_no_user}}</small>
                     {% endif %}
                 </div>
                 <div class="form-group">
                     <label for="inputPassword">Password</label>
                     <input type="password" class="form-control" name="login-password" placeholder="Enter your password" id="inputPassword" required>
-                    {% if alert2 %}
-                        <small class="form-text text-danger">{{alert2}}</small>
+                    {% if alert_wrong_password %}
+                        <small class="form-text text-danger">{{alert_wrong_password}}</small>
                     {% endif %}
                 </div>
                 <button type="submit" class="btn btn-success btn-block">Log in</button>

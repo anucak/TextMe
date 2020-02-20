@@ -17,8 +17,8 @@
                 <div class="form-group">
                     <label for="receiverUsername" class="col-form-label">Recipient username:</label>
                     <input type="text" class="form-control" name="receiver-username" id="receiverUsername" placeholder="Enter recipient username" value="{{user_reply}}" required>
-                    {% if alert %}
-                        <p class="form-text text-danger">{{alert}}</p>
+                    {% if alert_no_username %}
+                        <p class="form-text text-danger">{{alert_no_username}}</p>
                     {% endif %}
                 </div>
                 <div class="form-group">

@@ -13,8 +13,8 @@
                     <label for="inputUsername" class="col-md-4 col-form-label">Username</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" name="new-username" id="inputUsername" placeholder="Enter your username" value="{{user.username}}">
-                        {% if alert2 %}
-                            <small class="form-text text-danger">{{alert2}}</small>
+                        {% if alert_username_exists %}
+                            <small class="form-text text-danger">{{alert_username_exists}}</small>
                         {% endif %}
                     </div>
                 </div>
@@ -22,8 +22,8 @@
                     <label for="inputEmail" class="col-md-4 col-form-label">Email address</label>
                     <div class="col-md-8">
                         <input type="email" class="form-control" name="new-email" id="inputEmail" placeholder="Enter your email" value={{user.email}}>
-                        {% if alert3 %}
-                            <small class="form-text text-danger">{{alert3}}</small>
+                        {% if alert_email_taken %}
+                            <small class="form-text text-danger">{{alert_email_taken}}</small>
                         {% endif %}
                     </div>
                 </div>
@@ -31,8 +31,8 @@
                     <label for="inputPassword" class="col-md-4 col-form-label">Current password</label>
                     <div class="col-md-8">
                         <input type="password" class="form-control"  name="current-password" id="inputPassword" placeholder="Enter your current password">
-                        {% if alert1 %}
-                            <small class="form-text text-danger">{{alert1}}</small>
+                        {% if alert_wrong_password %}
+                            <small class="form-text text-danger">{{alert_wrong_password}}</small>
                         {% endif %}
                     </div>
                 </div>

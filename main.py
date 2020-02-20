@@ -71,14 +71,14 @@ def register():
 
                     return response
                 else:
-                    alert1 = "Passwords don't match"
-                    return render_template("register.html", alert1=alert1)
+                    alert_password = "Passwords don't match"
+                    return render_template("register.html", alert_password=alert_password)
             else:
-                alert2 = "That username is already taken"
-                return render_template("register.html", alert2=alert2)
+                alert_username = "That username is already taken"
+                return render_template("register.html", alert_username=alert_username)
         else:
-            alert3 = "User with the same email address already exists"
-            return render_template("register.html", alert3=alert3)
+            alert_email = "User with that email address already exists"
+            return render_template("register.html", alert_email=alert_email)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -96,8 +96,8 @@ def login():
         user = db.query(User).filter_by(email=email).first()
 
         if not user:
-            alert1 = "User with that email address doesn't exist"
-            return render_template("login.html", alert1=alert1)
+            alert_no_user = "User with that email address doesn't exist"
+            return render_template("login.html", alert_no_user=alert_no_user)
 
         if hashed_password == user.password:
             # create a random session token for this user
@@ -113,8 +113,8 @@ def login():
             response.set_cookie("session_token", session_token, httponly=True, samesite="Strict")
             return response
         else:
-            alert2 = "Wrong password, try again!"
-            return render_template("login.html", alert2=alert2)
+            alert_wrong_password = "Wrong password, try again!"
+            return render_template("login.html", alert_wrong_password=alert_wrong_password)
 
 
 @app.route("/new", methods=["GET", "POST"])
@@ -139,8 +139,8 @@ def new_message():
         receiver = db.query(User).filter_by(username=receiver_username, user_deleted=False).first()
 
         if not receiver:
-            alert = "That username doesn't exist!"
-            return render_template("new_message.html", user=user, alert=alert)
+            alert_no_username = "That username doesn't exist!"
+            return render_template("new_message.html", user=user, alert_no_username=alert_no_username)
 
         # save the id of a recipient in order to display details about the recipient
         receiver_id = receiver.id
@@ -153,13 +153,11 @@ def new_message():
         sender_id = user.id
 
         # add date and time
-        x = datetime.datetime.now()
-        date = "{0}/{1}/{2}".format(x.strftime("%d"), x.strftime("%m"), x.strftime("%y"))
-        time = "{0}:{1}".format(x.strftime("%H"), x.strftime("%M"))
+        date_time = datetime.datetime.now()
 
         # add and save all data in Message model
         message = Message(sender_username=sender_username, sender_id=sender_id, receiver_username=receiver_username,
-                          receiver_id=receiver_id, message=message, datetime=x, date=date, time=time)
+                          receiver_id=receiver_id, message=message, datetime=date_time)
 
         db.add(message)
         db.commit()
@@ -264,8 +262,8 @@ def edit_profile():
             if current_password_hashed == user.password:
                 user.password = new_password_hashed
             else:
-                alert1 = "Wrong password"
-                return render_template("edit_profile.html", user=user, alert1=alert1)
+                alert_wrong_password = "Wrong password"
+                return render_template("edit_profile.html", user=user, alert_wrong_password=alert_wrong_password)
 
         # change username
         if new_username:
@@ -274,8 +272,8 @@ def edit_profile():
                 username = db.query(User).filter_by(username=new_username).first()
 
                 if username:
-                    alert2 = "That username already exists"
-                    return render_template("edit_profile.html", user=user, alert2=alert2)
+                    alert_username_exists = "That username already exists"
+                    return render_template("edit_profile.html", user=user, alert_username_exists=alert_username_exists)
                 else:
                     # change username in sent messages
                     messages_sent = db.query(Message).filter_by(sender_username=user.username).all()
@@ -302,8 +300,8 @@ def edit_profile():
                 email = db.query(User).filter_by(email=new_email).first()
 
                 if email:
-                    alert3 = "User with that email address already exists"
-                    return render_template("edit_profile.html", user=user, alert3=alert3)
+                    alert_email_taken = "User with that email address already exists"
+                    return render_template("edit_profile.html", user=user, alert_email_taken=alert_email_taken)
                 else:
                     user.email = new_email
 
@@ -391,13 +389,14 @@ def weather():
         data = requests.get(url=url)
         data = data.json()
 
-        # turning timestamp into a date and time
-        readable = datetime.datetime.fromtimestamp(data["dt"])
+        try:
+            # turning timestamp into datetime
+            date_time = datetime.datetime.fromtimestamp(data["dt"])
 
-        date = "{0}.{1}.".format(readable.strftime("%d"), readable.strftime("%m"))
-        time = "{0}:{1}".format(readable.strftime("%H"), readable.strftime("%M"))
-
-        return render_template("weather.html", user=user, data=data, date=date, time=time)
+            return render_template("weather.html", user=user, data=data, date_time=date_time)
+        except KeyError:
+            alert_error = "Please enter valid city name !"
+            return render_template("weather.html", user=user, alert_error=alert_error)
     else:
         return redirect(url_for("index"))
 
