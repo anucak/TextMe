@@ -22,5 +22,3 @@ class Message(db.Model):
     receiver_id = db.Column(db.Integer, unique=False)
     message = db.Column(db.String, unique=False)
     datetime = db.Column(db.DateTime)
-    #date = db.Column(db.String, unique=False)
-    #time = db.Column(db.String, unique=False)
