@@ -9,7 +9,7 @@ Here is a working live demo: https://smartninja-text-me.herokuapp.com/
 ## General info
 This application was built as a final project for the SmartNinja Web Development 1 course. 
 
-Aside from sending and receiving text messages, users can also check the current weather.
+Besides sending and receiving text messages, users can also check the current weather.
 
 ## Built with
 * Flask - version 1.0.2
