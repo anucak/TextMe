@@ -1,5 +1,5 @@
 # TextMe
-A simple message app where registered users can send private messages to each other.
+A simple text messaging app where registered users can send private messages to each other.
 
 ![Example screenshot](./static/img/TextMe_screenshot.png)
 
